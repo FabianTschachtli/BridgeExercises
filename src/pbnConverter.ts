@@ -43,11 +43,8 @@ function convertPbn(pbnFile: string): string[][] {
         }
     }
 
-    console.log(allHands);
     return allHands;
 
 }
-
-convertPbn("KQ85.AJ92.K73.T4 JT42.K65.QJ5.K85 A97.T83.T962.AQ3 63.Q74.A84.J9762")
 
 export default convertPbn;

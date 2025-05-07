@@ -7,7 +7,7 @@ const Hand: ({cardList}: { cardList: string, active:boolean, flow: string, spaci
 
 
     return (
-        <p id="firstHand" className={(active?'active-hand ':'') + calculateClasses(flow, spacing)} data-hand="flow: horizontal; cards: 7S,QH,TH,8H,2H,JC,9C,8C,7C,3C,2C,JD,9D">
+        <p id="firstHand" className={(active?'active-hand ':'') + calculateClasses(flow, spacing)}>
             {cards.map((card: string, i) => (
             <CardDisplay cardShort={card} index={i} key={card}/>
         ))}

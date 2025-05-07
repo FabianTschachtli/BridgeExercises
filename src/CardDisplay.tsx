@@ -1,7 +1,7 @@
 
-const Card = ({ cardShort, index }: { cardShort: string, index: number }) => {
+const CardDisplay = ({ cardShort, index }: { cardShort: string, index: number }) => {
         function removeCard() {
-                console.log("Card " + cardShort + " clicked");
+                console.log("CardDisplay " + cardShort + " clicked");
         }
 
         return (
@@ -14,4 +14,4 @@ const Card = ({ cardShort, index }: { cardShort: string, index: number }) => {
         ))
 }
 
-export default Card;
+export default CardDisplay;

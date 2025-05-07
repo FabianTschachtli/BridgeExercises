@@ -78,7 +78,7 @@ function generateBridgeHands() {
 
 function generateSingleHand() {
     const deck = createDeck();
-    const hand = getHand(deck,13).sort(sortCard);
-    console.log(hand);
-    return hand;
+    return getHand(deck, 13).sort(sortCard);
 }
+
+export {generateSingleHand, generateBridgeHands}

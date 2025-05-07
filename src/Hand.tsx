@@ -1,5 +1,5 @@
 import './cards.css';
-import Card from './Card.tsx';
+import CardDisplay from './CardDisplay.tsx';
 import {ReactNode} from "react";
 const Hand: ({cardList}: { cardList: string, active:boolean, flow: string, spacing: number }) => ReactNode = ({ cardList, active, flow, spacing }) => {
     // You can now safely use cardList as a string
@@ -9,7 +9,7 @@ const Hand: ({cardList}: { cardList: string, active:boolean, flow: string, spaci
     return (
         <p id="firstHand" className={(active?'active-hand ':'') + calculateClasses(flow, spacing)} data-hand="flow: horizontal; cards: 7S,QH,TH,8H,2H,JC,9C,8C,7C,3C,2C,JD,9D">
             {cards.map((card: string, i) => (
-            <Card cardShort={card} index={i} key={i}/>
+            <CardDisplay cardShort={card} index={i} key={card}/>
         ))}
         </p>
     )

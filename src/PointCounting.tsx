@@ -109,8 +109,8 @@ function PointCounting() {
                 <div className="result-message">
                     <div className="w-full max-w-md flex flex-col items-left" style={{ height: '100px', marginBottom: '1rem' }}>
                         {history[currentIndex].revealed ? (
-                            <div style={{ backgroundColor: history[currentIndex].correct ? "darkgreen" : "#8B0000", padding: "20px", borderRadius: "16px" }}>
-                                <div className={history[currentIndex].correct ? "correct-message" : "false-message"}>
+                            <div className={history[currentIndex].correct ? "bg-green-900" : "bg-red-800"} style={{  padding: "20px", borderRadius: "16px" }}>
+                                <div className={history[currentIndex].correct ? "bg-green-800 correct-message" : "bg-red-700 false-message"}>
                                     {history[currentIndex].correct ? "Correct!" : "Incorrect"}
                                 </div>
                                 <div className="mt-3 text-left space-y-1">
@@ -145,6 +145,9 @@ function PointCounting() {
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         disabled={history[currentIndex].revealed}
+                        className={ 'disabled:bg-gray-800 ' + history[currentIndex].correct
+                                ? 'bg-green-800'
+                                : 'bg-red-800'}
                         style={{
                             padding: "8px",
                             width: "100%",

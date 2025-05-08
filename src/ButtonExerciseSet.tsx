@@ -24,17 +24,14 @@ const ButtonExerciseSet: React.FC<ButtonExerciseSetProps> = ({
             <button
                 onClick={handleCheck}
                 disabled={disabled}
-                className={`${
-                    disabled
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700"
-                } text-white font-semibold py-2 px-4 rounded-lg shadow-md transition`}
+                className={`disabled:bg-gray-400 disabled:cursor-not-allowed bg-blue-700 hover:bg-blue-800 
+                     text-white font-semibold py-2 px-4 rounded-lg shadow-md transition`}
             >
                 Submit
             </button>
             <button
                 onClick={handleNext}
-                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition"
+                className="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition"
             >
                 Next
             </button>

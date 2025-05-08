@@ -16,11 +16,11 @@ const ProgressBar: React.FC<ProgressbarProps> = ({correctCount, incorrectCount, 
             <div className="w-full h-4 bg-gray-700 rounded overflow-hidden flex">
                 <div
                     style={{ width: `${correctPercent}%` }}
-                    className="bg-green-500 transition-all duration-300"
+                    className="bg-green-800 transition-all duration-300"
                 ></div>
                 <div
                     style={{ width: `${incorrectPercent}%` }}
-                    className="bg-red-500 transition-all duration-300"
+                    className="bg-red-800 transition-all duration-300"
                 ></div>
             </div>
 

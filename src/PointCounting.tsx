@@ -17,28 +17,22 @@ function PointCounting() {
         correct: boolean
     };
 
-
     const [history, setHistory] = useState<HandState[]>([{
         cards: generateSingleHand(),
         revealed: false,
         correct: false
     }]);
 
-
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const hand = history[currentIndex].cards;
     const points = highCardPoints(hand);
 
-
     const correctCount = history.filter(h => h.revealed && h.correct).length;
     const incorrectCount = history.filter(h => h.revealed && !h.correct).length;
-    const totalRevealed = correctCount + incorrectCount;
     const total = history.length;
     const correctPercent = (correctCount / total) * 100;
     const incorrectPercent = (incorrectCount / total) * 100;
-
-
 
     const suitMap: Record<string, string> = {
         S: "Spades",
@@ -84,12 +78,7 @@ function PointCounting() {
 
         const updated = [...history];
         updated[currentIndex].revealed = true;
-
-        if (parseInt(inputText) === points) {
-            updated[currentIndex].correct = true;
-        } else {
-            updated[currentIndex].correct = false;
-        }
+        updated[currentIndex].correct = parseInt(inputText) === points;
 
         setHistory(updated);
     };
@@ -154,12 +143,6 @@ function PointCounting() {
                             borderRadius: "6px",
                             border: "1px solid #ccc",
                             fontSize: "16px",
-                            backgroundColor: history[currentIndex].revealed
-                                ? history[currentIndex].correct
-                                    ? "#1a3000"
-                                    : "#300000"
-                                : "#2e2e2e",
-
                         }}
                     />
 

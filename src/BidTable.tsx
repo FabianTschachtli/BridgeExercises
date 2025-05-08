@@ -91,17 +91,17 @@ const BidTable: React.FC<BidTableProps> = ({onBidClick, lastBid}) => {
                                 key={bid}
                                 disabled={isDisabled(level, index, lastLevel, lastRank)}
                                 className={`
-                                  ${suitBgColors[suit]}
-                                  disabled:bg-gray-200 
-                                  ${getSuitColor(suit)} 
-                                  rounded-md 
-                                  px-5 py-4
-                                  text-base
-                                  md:px-6 md:py-8
-                                  md:text-lg
-                                  font-semibold 
-                                  transition
-                                `}
+                                ${suitBgColors[suit]}
+                                ${getSuitColor(suit)}
+                                ${isDisabled(level, index, lastLevel, lastRank) ? 'opacity-40 cursor-not-allowed' : 'hover:scale-[1.03]'}
+                                rounded-xl
+                                text-base md:text-2xl
+                                font-extrabold
+                                py-3 md:py-6
+                                text-center
+                                transition duration-150 ease-in-out
+                                shadow-sm
+                              `}
                                 onClick={() => onBidClick(bid)}
                             >
                                 {bid}

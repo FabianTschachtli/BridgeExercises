@@ -3,6 +3,9 @@ import Hand from './Hand.tsx';
 import { highCardAnalyse, highCardPoints } from './calculation/pointsCalc.tsx';
 import { generateSingleHand } from './bridgehand.js';
 import { useState } from "react";
+import ButtonToMainPage from "./ButtonToMainPage.tsx";
+import ButtonExerciseSet from "./ButtonExerciseSet.tsx";
+import Progressbar from "./Progressbar.tsx";
 
 function PointCounting() {
     const [inputText, setInputText] = useState("");
@@ -94,24 +97,13 @@ function PointCounting() {
 
     return (
         <div>
-            <div className="w-full max-w-2xl mb-4">
-                <div className="w-full h-4 bg-gray-700 rounded overflow-hidden flex">
-                    <div
-                        style={{ width: `${correctPercent}%` }}
-                        className="bg-green-500 transition-all duration-300"
-                    ></div>
-                    <div
-                        style={{ width: `${incorrectPercent}%` }}
-                        className="bg-red-500 transition-all duration-300"
-                    ></div>
-                </div>
-
-                <div className="flex justify-between text-sm text-white mt-1 font-semibold">
-                    <span>✔ {correctCount}</span>
-                    <span>Total: {total}</span>
-                    <span>❌ {incorrectCount}</span>
-                </div>
-            </div>
+            <Progressbar
+                correctPercent={correctPercent}
+                incorrectPercent={incorrectPercent}
+                correctCount={correctCount}
+                total={total}
+                incorrectCount={incorrectCount}
+            />
 
             <section>
                 <div className="result-message">
@@ -172,41 +164,14 @@ function PointCounting() {
 
 
 
-                <div className="flex justify-between items-center mt-4 gap-2">
-                    <button
-                        onClick={handleBack}
-                        className="bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition"
-                    >
-                        Back
-                    </button>
-                    <button
-                        onClick={handleCheck}
-                        disabled={history[currentIndex].revealed}
-                        className={`${
-                            history[currentIndex].revealed
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-blue-600 hover:bg-blue-700"
-                        } text-white font-semibold py-2 px-4 rounded-lg shadow-md transition`}
-                    >
-                        Submit
-                    </button>
-
-                    <button
-                        onClick={handleNext}
-                        className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition"
-                    >
-                        Next
-                    </button>
-                </div>
+                <ButtonExerciseSet
+                    handleBack={handleBack}
+                    handleCheck={handleCheck}
+                    handleNext={handleNext}
+                    disabled={history[currentIndex].revealed}
+                />
             </section>
-            <div className="fixed bottom-4 left-4">
-                <button
-                    onClick={() => window.location.href = "/index.html"}
-                    className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition"
-                >
-                    ⬅ Main page
-                </button>
-            </div>
+            <ButtonToMainPage/>
 
         </div>
     );

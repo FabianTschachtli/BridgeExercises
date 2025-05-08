@@ -1,3 +1,5 @@
+import React from 'react';
+
 type BidTableProps = {
     onBidClick: (bid: string) => void;
     lastBid: string;
@@ -6,14 +8,28 @@ type BidTableProps = {
 const levels = [1, 2, 3, 4, 5, 6, 7];
 
 
-const suits = ["NT", "♠", "♥", "♦", "♣"];
+type Suit = "NT" | "♠" | "♥" | "♦" | "♣";
+
+const suits: Suit[] = ["NT", "♠", "♥", "♦", "♣"];
+
+
+const suitBgColors: Record<Suit, string> = {
+    "NT": "bg-gray-100 hover:bg-gray-200",
+    "♠": "bg-blue-100 hover:bg-blue-200",
+    "♥": "bg-red-100 hover:bg-red-200",
+    "♦": "bg-orange-100 hover:bg-orange-200",
+    "♣": "bg-green-100 hover:bg-green-200"
+};
 
 const specialBids = [
-    {text: "Pass", bgColor: "bg-green-700", hoverColor: "bg-green-600"},
-    {text: "X", bgColor: "bg-red-600", hoverColor: "bg-red-400"},
-    {text: "XX", bgColor: "bg-blue-700", hoverColor: "bg-blue-500"}];
+    {text: 'Pass', textColor: 'text-white', bgColor: 'bg-green-700', hoverColor: 'bg-green-600'},
+    {text: 'X', textColor: 'text-white', bgColor: 'bg-red-600', hoverColor: 'bg-red-500'},
+    {text: 'XX', textColor: 'text-white', bgColor: 'bg-blue-700', hoverColor: 'bg-blue-500'},
+];
 
-const getSuitColor = (s: string): string => {
+
+
+const getSuitColor = (s: Suit): string => {
     switch (s) {
         case "NT":
             return "text-gray-800";
@@ -22,42 +38,47 @@ const getSuitColor = (s: string): string => {
         case "♥":
             return "text-red-600";
         case "♦":
-            return "text-red-500";
+            return "text-orange-600";
         case "♣":
             return "text-green-600";
-        default:
-            return "";
     }
 };
 
-
-const isDisabled =
-    (level: number, rank: number, lastLevel: number, lastRank: number): boolean => {
-        if (level > lastLevel) {
-            return false;
-        } else if (level < lastLevel) {
-            return true;
-        } else {
-            return rank <= lastRank;
-        }
+const isDisabled = (
+    level: number,
+    rank: number,
+    lastLevel: number,
+    lastRank: number
+): boolean => {
+    if (level > lastLevel) {
+        return false;
+    } else if (level < lastLevel) {
+        return true;
+    } else {
+        return rank <= lastRank;
     }
-
+};
 
 const BidTable: React.FC<BidTableProps> = ({onBidClick, lastBid}) => {
-    const lastLevel = parseInt(lastBid.substring(0, 1));
-    const lastRank = suits.indexOf(lastBid.substring(1, 2));
+
+    const lastLevel = parseInt(lastBid.substring(0, 1)) || 0;
+    const lastSuit = lastBid.substring(1) as Suit;
+    const lastRank = suits.indexOf(lastSuit);
+
     return (
         <div className="p-4">
-
-            <div className="flex justify-center gap-6 mb-4">
-                {specialBids.map((bid) => (
+            <div className="mb-6 flex justify-center gap-6">
+                {specialBids.map(({text, bgColor, hoverColor, textColor}) => (
                     <button
-                        key={bid.text}
-                        className={bid.bgColor + ' no-border rounded-xl px-4 py-2 font-semibold ' +
-                            'hover:' + bid.hoverColor + ' transition'}
-                        onClick={() => onBidClick(bid.text)}
+                        key={text}
+                        onClick={() => onBidClick(text)}
+                        className={`
+                        ${bgColor} hover:${hoverColor} ${textColor}
+                        text-xl px-6 py-3 rounded-full shadow-lg font-bold tracking-wide
+                        transition transform duration-150 hover:scale-105
+                      `}
                     >
-                        {bid.text}
+                        {text}
                     </button>
                 ))}
             </div>
@@ -65,18 +86,19 @@ const BidTable: React.FC<BidTableProps> = ({onBidClick, lastBid}) => {
                 {levels.flatMap((level) =>
                     suits.map((suit, index) => {
                         const bid = `${level}${suit}`;
-                        const suitOnly = suit.replace(/\d/g, ""); // Just the suit char
                         return (
                             <button
                                 key={bid}
                                 disabled={isDisabled(level, index, lastLevel, lastRank)}
                                 className={`
-                                  bg-gray-50 
-                                  hover:bg-gray-100 
+                                  ${suitBgColors[suit]}
                                   disabled:bg-gray-200 
-                                  ${getSuitColor(suitOnly)} 
+                                  ${getSuitColor(suit)} 
                                   rounded-md 
-                                  px-3 py-2 
+                                  px-5 py-4
+                                  text-base
+                                  md:px-6 md:py-8
+                                  md:text-lg
                                   font-semibold 
                                   transition
                                 `}
@@ -88,11 +110,8 @@ const BidTable: React.FC<BidTableProps> = ({onBidClick, lastBid}) => {
                     })
                 )}
             </div>
-
-
         </div>
     );
 };
-
 
 export default BidTable;

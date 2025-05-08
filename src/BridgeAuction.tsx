@@ -1,10 +1,10 @@
 import React from 'react';
 
-const players = ['South', 'West','North', 'East'];
+const players = ['South', 'West', 'North', 'East'];
 
 interface Bid {
-    player: number; // 0 - North, 1 - East, 2 - South, 3 - West
-    value: string;  // e.g., "1♣", "2NT", "Pass", "Double"
+    player: number;
+    value: string;
 }
 
 interface BridgeAuctionProps {
@@ -12,17 +12,30 @@ interface BridgeAuctionProps {
 }
 
 const BridgeAuction: React.FC<BridgeAuctionProps> = ({ bids }) => {
+    const groupedBids: Record<string, string[]> = {
+        South: [],
+        West: [],
+        North: [],
+        East: [],
+    };
+
+    bids.forEach(bid => {
+        const playerName = players[bid.player];
+        groupedBids[playerName].push(bid.value);
+    });
 
     return (
-        <div className="p-4 rounded-xl bg-green-800 text-white font-mono max-w-md mx-auto shadow-lg">
-            <h2 className="text-xl font-bold text-center mb-4">Bridge Auction</h2>
-            <div className="grid grid-cols-4 gap-2 text-center">
+        <div
+            className="bg-green-800 text-white rounded-2xl shadow-2xl px-10 py-6 w-fit mx-auto mb-10 border-[6px] border-green-400 scale-[1.1]">
+            <h2 className="text-3xl font-bold text-center tracking-wider mb-4">Bridge Auction</h2>
+            <div className="grid grid-cols-4 gap-x-8 text-center text-base md:text-lg font-semibold">
+
                 {players.map((player) => (
-                    <div key={player} className="font-semibold">{player}</div>
-                ))}
-                {bids.map((bid) => (
-                    <div key={bid.value} className="col-span-1">
-                        {bid.value}
+                    <div key={player}>
+                        <div className="font-semibold text-green-200 mb-1">{player}</div>
+                        {groupedBids[player].map((bid, i) => (
+                            <div key={i} className="text-white">{bid}</div>
+                        ))}
                     </div>
                 ))}
             </div>

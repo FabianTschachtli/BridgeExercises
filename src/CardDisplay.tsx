@@ -23,7 +23,6 @@ const CardDisplay: React.FC<CardDisplayProps> = ({
     const cx = containerWidth / 2;
     const cy = containerHeight / 2 + 130;
 
-    // Главное: дуга вверх (по sin/cos)
     const x = cx + Math.sin(angle) * radius;
     const y = cy - Math.cos(angle) * radius;
 

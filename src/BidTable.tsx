@@ -22,9 +22,9 @@ const suitBgColors: Record<Suit, string> = {
 };
 
 const specialBids = [
-    {text: 'Pass', textColor: 'text-white', bgColor: 'bg-green-700', hoverColor: 'bg-green-600'},
-    {text: 'X', textColor: 'text-white', bgColor: 'bg-red-600', hoverColor: 'bg-red-500'},
-    {text: 'XX', textColor: 'text-white', bgColor: 'bg-blue-700', hoverColor: 'bg-blue-500'},
+    {text: 'Pass', bgColor: 'bg-green-700', hoverColor: 'bg-green-600'},
+    {text: 'X',  bgColor: 'bg-red-600', hoverColor: 'bg-red-500'},
+    {text: 'XX', bgColor: 'bg-blue-700', hoverColor: 'bg-blue-500'},
 ];
 
 
@@ -68,13 +68,13 @@ const BidTable: React.FC<BidTableProps> = ({onBidClick, lastBid}) => {
     return (
         <div className="p-4">
             <div className="mb-6 flex justify-center gap-6">
-                {specialBids.map(({text, bgColor, hoverColor, textColor}) => (
+                {specialBids.map(({text, bgColor, hoverColor}) => (
                     <button
                         key={text}
                         onClick={() => onBidClick(text)}
                         className={`
-                        ${bgColor} hover:${hoverColor} ${textColor}
-                        text-xl px-6 py-3 rounded-full shadow-lg font-bold tracking-wide
+                        ${bgColor} hover:${hoverColor} text-white
+                        text-xl px-6 py-3 rounded-xl shadow-lg font-bold tracking-wide
                         transition transform duration-150 hover:scale-105
                       `}
                     >
@@ -97,7 +97,7 @@ const BidTable: React.FC<BidTableProps> = ({onBidClick, lastBid}) => {
                                 rounded-xl
                                 text-base md:text-2xl
                                 font-extrabold
-                                py-3 md:py-6
+                                py-3 md:py-3
                                 text-center
                                 transition duration-150 ease-in-out
                                 shadow-sm

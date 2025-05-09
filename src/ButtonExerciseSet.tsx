@@ -5,6 +5,7 @@ type ButtonExerciseSetProps = {
     handleCheck: () => void;
     handleNext: () => void;
     disabled: boolean;
+    disabledNext: boolean;
 };
 
 const ButtonExerciseSet: React.FC<ButtonExerciseSetProps> = ({
@@ -12,6 +13,7 @@ const ButtonExerciseSet: React.FC<ButtonExerciseSetProps> = ({
                                                                  handleCheck,
                                                                  handleNext,
                                                                  disabled,
+                                                                 disabledNext,
                                                              }) => {
     return (
         <div className="flex justify-between items-center mt-4 gap-2">
@@ -31,7 +33,8 @@ const ButtonExerciseSet: React.FC<ButtonExerciseSetProps> = ({
             </button>
             <button
                 onClick={handleNext}
-                className="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition"
+                disabled={disabledNext}
+                className="bg-green-700 hover:bg-green-800 disabled:bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition"
             >
                 Next
             </button>

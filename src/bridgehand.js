@@ -1,7 +1,4 @@
-// bridgeHand.js
-/*jshint esversion: 6 */
 
-// Define suits and ranks
 const suits = ['S', 'H', 'D', 'C'], ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const suitsOrder = new Map([
     ['S',['S', 'H', 'C', 'D']],

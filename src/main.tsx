@@ -4,15 +4,16 @@ import './index.css'
 import App from "./App.tsx";
 import PointCounting from "./PointCounting.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landingpage from "./landingpage.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <BrowserRouter>
           <Routes>
-              <Route path="/" element={<App />}>
-                  <Route index element={<App />} />
+              <Route path="/">
+                  <Route index element={<Landingpage />} />
                   <Route path="points" element={<PointCounting />} />
-                  <Route path="*" element={<App />} />
+                  <Route path="bidding" element={<App />} />
               </Route>
           </Routes>
       </BrowserRouter>

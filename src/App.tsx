@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './index.css';
-import Hand from './Hand.tsx';
-import BidTable from "./BidTable.tsx";
-import BridgeAuction from "./BridgeAuction.tsx";
+import './App.css';
+import Hand from './Hand';
+import BidTable from './BidTable';
+import BridgeAuction from './BridgeAuction';
 
 function App() {
     const [showIntro, setShowIntro] = useState(true);
@@ -18,7 +19,7 @@ function App() {
         { player: 3, value: "Pass" },
     ];
 
-    // Скрываем видео через 8 секунд автоматически
+
     useEffect(() => {
         const timer = setTimeout(() => setShowIntro(false), 8000);
         return () => clearTimeout(timer);
@@ -45,7 +46,6 @@ function App() {
                 </button>
             </div>
         );
-
     }
 
     return (
@@ -55,8 +55,10 @@ function App() {
                 <BidTable onBidClick={handleBidClick} lastBid={'2♥'} />
             </div>
             <Hand cardList="7S,QH,TH,8H,2H,JC,9C,8C,7C,3C,2C,JD,9D" />
-            <div className='hand'
-                 data-hand='flow: horizontal; spacing: 0.2; width: 80; cards: 7S,QH,TH,8H,2H,JC,9C,8C,7C,3C,2C,JD,9D' />
+            <div
+                className="hand"
+                data-hand="flow: horizontal; spacing: 0.2; width: 80; cards: 7S,QH,TH,8H,2H,JC,9C,8C,7C,3C,2C,JD,9D"
+            />
         </>
     );
 }

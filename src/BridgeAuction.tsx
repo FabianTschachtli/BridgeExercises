@@ -3,8 +3,8 @@ import React from 'react';
 const players = ['South', 'West', 'North', 'East'];
 
 interface Bid {
-    player: number;
-    value: string;
+    player: number;  // 0 = South, 1 = West, 2 = North, 3 = East
+    value: string;   // e.g. "1♣", "2NT", "Pass", "Double"
 }
 
 interface BridgeAuctionProps {
@@ -12,29 +12,36 @@ interface BridgeAuctionProps {
 }
 
 const BridgeAuction: React.FC<BridgeAuctionProps> = ({ bids }) => {
+    // Group bids by player name
     const groupedBids: Record<string, string[]> = {
         South: [],
         West: [],
         North: [],
         East: [],
     };
-
     bids.forEach(bid => {
         const playerName = players[bid.player];
         groupedBids[playerName].push(bid.value);
     });
 
     return (
-        <div
-            className="bg-green-800 text-white rounded-2xl shadow-2xl px-10 py-6 w-fit mx-auto mb-10 border-[6px] border-green-400 scale-[1.1]">
-            <h2 className="text-3xl font-bold text-center tracking-wider mb-4">Bridge Auction</h2>
-            <div className="grid grid-cols-4 gap-x-8 text-center text-base md:text-lg font-semibold">
+        <div className="p-4 rounded-xl bg-green-800 text-white font-mono max-w-lg mx-auto shadow-lg">
+            <h2 className="text-2xl font-bold text-center mb-4">Bridge Auction</h2>
+            <div className="grid grid-cols-4 gap-4 text-center">
+                {/* Player headers */}
+                {players.map(player => (
+                    <div key={player} className="font-semibold text-green-200">
+                        {player}
+                    </div>
+                ))}
 
-                {players.map((player) => (
+                {/* Bids grid: four columns, each player's bids in order */}
+                {players.map(player => (
                     <div key={player}>
-                        <div className="font-semibold text-green-200 mb-1">{player}</div>
                         {groupedBids[player].map((bid, i) => (
-                            <div key={i} className="text-white">{bid}</div>
+                            <div key={i} className="py-1">
+                                {bid}
+                            </div>
                         ))}
                     </div>
                 ))}

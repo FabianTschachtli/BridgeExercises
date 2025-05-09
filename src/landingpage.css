@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+    color: #fff;
+    overflow-x: hidden;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #00000055;
+  }
+  
+  nav {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-300px);
+    height: 100%;
+    width: 400px;
+    transition: all 800ms cubic-bezier(.8, 0, .33, 1);
+    border-radius: 0% 0% 100% 50%;
+    z-index: 1000;
+  }
+  
+  nav.nav-open {
+    transform: translateX(0px);
+    border-radius: 0% 0% 0% 0%;
+    background: rgba(255, 255, 255, 0.6);
+  }
+  
+  nav .menu-btn {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 30px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  nav .menu-btn .line {
+    width: 30px;
+    height: 2px;
+    margin: 5px 0;
+    background: #fff;
+    transition: all 700ms cubic-bezier(.9, 0, .33, 1);
+  }
+  
+  nav .menu-btn .line.line--1.line-cross {
+    transform: rotate(45deg) translateY(10px);
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  nav .menu-btn .line.line--2.line-fade-out {
+    transform: translate(30px);
+    opacity: 0;
+  }
+  
+  nav .menu-btn .line.line--3.line-cross {
+    transform: rotate(-45deg) translateY(-10px);
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  nav .nav-links {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100px);
+    opacity: 0;
+    transition: all 900ms cubic-bezier(.9, 0, .33, 1);
+  }
+  
+  nav .nav-links.fade-in {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  nav .nav-links .link {
+    margin: 20px 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    transition: all 300ms ease;
+  }
+  
+  nav .nav-links .link:hover {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .buttonsclass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    padding: 2rem;
+  }
+  
+  .glow-on-hover {
+    width: 220px;
+    height: 60px;
+    border: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+  }
+  
+  .glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00,
+      #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(6px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+  }
+  
+  .glow-on-hover:hover:before {
+    opacity: 1;
+  }
+  
+  .glow-on-hover:after {
+    content: '';
+    background: #111;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+  
+  @keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+  }
+  
+  .inform {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.6);
+  }
+  
+  .support {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    display: flex;
+  }
+  
+  a {
+    margin: 0 20px;
+    color: #fff;
+    font-size: 2rem;
+    transition: all 400ms ease;
+  }
+  
+  a:hover {
+    color: #222;
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .glow-on-hover {
+      width: 180px;
+      height: 50px;
+      font-size: 1rem;
+    }
+  }
+  

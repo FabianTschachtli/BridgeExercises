@@ -1,7 +1,8 @@
-function convertPbn(pbnFile: string): string[][] {
+function parsePbnHands(pbnHands: string): string[][] {
     let countSuit: number = 0;
     let countHand: number = 0;
-    const allCards: string[] = [];
+    const validCards = "AKQJT98765432";
+    const allCards = pbnHands.split("");
 
     const hand1: string[] = [];
     const hand2: string[] = [];
@@ -10,11 +11,13 @@ function convertPbn(pbnFile: string): string[][] {
 
     const allHands: string[][] = [hand1, hand2, hand3, hand4];
 
-    for (const cards of pbnFile.split("")) {
-        allCards.push(cards);
-    }
-
     for (const character of allCards) {
+
+        if (!validCards.includes(character.toUpperCase()) &&
+            character !== "." &&
+            character !== " ") {
+            continue;
+        }
 
         if (character === ".") {
             countSuit++;
@@ -22,6 +25,11 @@ function convertPbn(pbnFile: string): string[][] {
         }
 
         if (character === " ") {
+            if (countHand >= 3 || countHand < 0) {
+                countHand = 0;
+                countSuit = 0;
+                continue;
+            }
             countHand++;
             countSuit = 0;
             continue;
@@ -40,6 +48,8 @@ function convertPbn(pbnFile: string): string[][] {
             case 3:
                 allHands[countHand].push("C" + character);
                 break;
+            default:
+                break;
         }
     }
 
@@ -47,4 +57,4 @@ function convertPbn(pbnFile: string): string[][] {
 
 }
 
-export default convertPbn;
+export default parsePbnHands;

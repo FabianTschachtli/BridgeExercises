@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './landingpage.css';
+import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
   const [navOpen, setNavOpen] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
 
@@ -34,8 +36,8 @@ const LandingPage: React.FC = () => {
 
       {showButtons && (
         <div className="buttonsclass" id="buttons" style={{ display: 'flex' }}>
-          <button className="glow-on-hover" type="button">points</button>
-          <button className="glow-on-hover" type="button">bidding</button>
+          <button onClick={() => navigate("points", { replace: true })} className="glow-on-hover" type="button">points</button>
+          <button onClick={() => navigate("bidding", { replace: true })} className="glow-on-hover" type="button">bidding</button>
         </div>
       )}
     </div>

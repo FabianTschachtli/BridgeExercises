@@ -49,7 +49,6 @@ function parsePbnHands(pbnHands: string): string[][] {
                 allHands[countHand].push("C" + character);
                 break;
             default:
-                break;
         }
     }
 

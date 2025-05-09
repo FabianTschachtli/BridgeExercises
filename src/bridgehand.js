@@ -1,13 +1,16 @@
-// bridgeHand.js
+// bridgehand.js
 /*jshint esversion: 6 */
 
 // Define suits and ranks
-const suits = ['S', 'H', 'D', 'C'], ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+const suits = ['S', 'H', 'D', 'C'];
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+
 const suitsOrder = new Map([
-    ['S',['S', 'H', 'C', 'D']],
-    ['H',['H', 'S', 'D', 'C']],
+    ['S', ['S', 'H', 'C', 'D']],
+    ['H', ['H', 'S', 'D', 'C']],
     ['D', ['D', 'S', 'H', 'C']],
-    ['C', ['C', 'D', 'H', 'S']]]);
+    ['C', ['C', 'D', 'H', 'S']],
+]);
 
 // Create the deck
 function createDeck() {
@@ -26,59 +29,59 @@ function shuffle(deck) {
         const j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
-
 }
 
+// Draw a single hand of given size
 function getHand(deck, size) {
-    for (let i = deck.length - 1; i >= deck.length-size; i--) {
+    for (let i = deck.length - 1; i >= deck.length - size; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
-    return deck.slice(deck.length-size, deck.length);
+    return deck.slice(deck.length - size).sort(sortCard);
 }
 
+// Sort cards within a hand
 function sortCard(a, b) {
     const order = suitsOrder.get('S');
-    const suitComp =  order.indexOf(a.substring(a.length-1)) - order.indexOf(b.substring(b.length-1));
-    if (suitComp !== 0 ) {
+    const suitComp = order.indexOf(a.slice(-1)) - order.indexOf(b.slice(-1));
+    if (suitComp !== 0) {
         return suitComp;
     } else {
-        return ranks.indexOf(a.substring(0,1)) > ranks.indexOf(b.substring(0,1)) ? -1 : 1;
+        return ranks.indexOf(a[0]) > ranks.indexOf(b[0]) ? -1 : 1;
     }
 }
 
-// Deal the cards into 4 hands
+// Deal the deck into four hands
 function dealHands(deck) {
-    const hands = {
-        North: [],
-        East: [],
-        South: [],
-        West: []
-    };
-
+    const hands = { North: [], East: [], South: [], West: [] };
     const players = Object.keys(hands);
     for (let i = 0; i < deck.length; i++) {
         hands[players[i % 4]].push(deck[i]);
     }
-
+    // Sort each hand
+    for (const player of players) {
+        hands[player].sort(sortCard);
+    }
     return hands;
 }
 
-// Main function
+// Main functions
+
 function generateBridgeHands() {
     const deck = createDeck();
     shuffle(deck);
     const hands = dealHands(deck);
-
-    for (const [player, hand] of Object.entries(hands)) {
-        console.log(`${player}: ${hand.join(', ')}`);
-    }
+    console.log(
+        Object.entries(hands)
+            .map(([p, h]) => `${p}: ${h.join(', ')}`)
+            .join('\n')
+    );
     return hands;
 }
 
 function generateSingleHand() {
     const deck = createDeck();
-    return getHand(deck, 13).sort(sortCard);
+    return getHand(deck, 13);
 }
 
-export {generateSingleHand, generateBridgeHands}
+export { generateSingleHand, generateBridgeHands };

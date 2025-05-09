@@ -1,6 +1,7 @@
 import './PointCounting.css'
 import Hand from './Hand.tsx';
 import { highCardAnalyse, highCardPoints } from './calculation/pointsCalc.tsx';
+// @ts-ignore
 import { generateSingleHand } from './bridgehand.js';
 import { useState } from "react";
 import ButtonToMainPage from "./ButtonToMainPage.tsx";
@@ -154,7 +155,8 @@ function PointCounting() {
                     handleBack={handleBack}
                     handleCheck={handleCheck}
                     handleNext={handleNext}
-                    disabled={history[currentIndex].revealed}
+                    disabled={history[currentIndex].revealed || inputText.length === 0}
+                    disabledNext={!history[currentIndex].revealed}
                 />
             </section>
             <ButtonToMainPage/>

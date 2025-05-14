@@ -9,7 +9,7 @@ const levels = [1, 2, 3, 4, 5, 6, 7] as const;
 type Level = typeof levels[number];
 
 type Suit = "NT" | "♠" | "♥" | "♦" | "♣";
-const suits: Suit[] = ["NT", "♠", "♥", "♦", "♣"];
+const suits: Suit[] = ["♣", "♦", "♥", "♠", "NT", ];
 
 const suitBgColors: Record<Suit, string> = {
     "NT": "bg-gray-100 hover:bg-gray-200",
@@ -54,14 +54,14 @@ const BidTable: React.FC<BidTableProps> = ({ onBidClick, lastBid }) => {
     return (
         <div className="p-4">
             {/* Special action buttons: Pass, X, XX */}
-            <div className="mb-6 flex justify-center gap-6">
+            <div className="mb-6 flex justify-center gap-4">
                 {specialBids.map(({ text, bgColor, hoverColor }) => (
                     <button
                         key={text}
                         onClick={() => onBidClick(text)}
                         className={`
               ${bgColor} hover:${hoverColor} text-white
-              text-xl px-6 py-3 rounded-xl shadow-lg font-bold tracking-wide
+              text-xl px-6 py-1 rounded-xl shadow-lg font-bold tracking-wide
               transition transform duration-150 hover:scale-105
             `}
                     >
@@ -86,7 +86,7 @@ const BidTable: React.FC<BidTableProps> = ({ onBidClick, lastBid }) => {
                   ${getSuitColor(suit)}
                   ${disabled ? 'opacity-40 cursor-not-allowed' : 'hover:scale-[1.03]'}
                   rounded-xl text-base md:text-2xl font-extrabold
-                  py-3 md:py-3 text-center
+                  py-1 md:py-0.5 text-center
                   transition duration-150 ease-in-out shadow-sm
                 `}
                             >

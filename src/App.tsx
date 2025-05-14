@@ -6,18 +6,13 @@ import BidTable from './BidTable';
 import BridgeAuction from './BridgeAuction';
 
 function App() {
+    document.body.classList.add('exercise');
+    document.body.classList.remove('landingpage');
     const [showIntro, setShowIntro] = useState(true);
 
     const sampleBids = [
-        { player: 0, value: "1♣" },
-        { player: 1, value: "Pass" },
-        { player: 2, value: "1♥" },
-        { player: 3, value: "Pass" },
-        { player: 0, value: "2♥" },
-        { player: 1, value: "Pass" },
-        { player: 2, value: "Pass" },
-        { player: 3, value: "Pass" },
-    ];
+        [" ", " ", "1♣","Pass"],
+        ["1♥", "Pass", "2♥", "Pass"]];
 
 
     useEffect(() => {

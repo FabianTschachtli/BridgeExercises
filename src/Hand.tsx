@@ -38,7 +38,7 @@ const Hand: React.FC<HandProps> = ({ cardList }) => {
     return (
         <div
             ref={ref}
-            className="relative w-full h-[400px] overflow-visible"
+            className="relative w-full h-[220px] overflow-visible"
         >
             {width > 0 &&
                 cards.map((card, i) => {

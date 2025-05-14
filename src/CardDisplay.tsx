@@ -17,18 +17,18 @@ const CardDisplay: React.FC<CardDisplayProps> = ({
                                                  }) => {
     const [hovered, setHovered] = useState(false);
 
-    const cardW = 150;
-    const cardH = 220;
+    const cardW = 100;
+    const cardH = 150;
 
     const cx = containerWidth / 2;
-    const cy = containerHeight / 2 + 130;
+    const cy = containerHeight / 2 + 90;
 
     const x = cx + Math.sin(angle) * radius;
     const y = cy - Math.cos(angle) * radius;
 
     const deg = (angle * 180) / Math.PI;
 
-    const pull = hovered ? 30 : 0;
+    const pull = hovered ? 20 : 0;
 
     const nx = Math.sin(angle) * pull;
     const ny = -Math.cos(angle) * pull;

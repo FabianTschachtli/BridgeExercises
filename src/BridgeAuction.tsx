@@ -1,53 +1,56 @@
-import React from 'react';
+﻿import React from 'react';
+import { Card, Typography } from "@material-tailwind/react";
 
 const players = ['South', 'West', 'North', 'East'];
 
-interface Bid {
-    player: number;  // 0 = South, 1 = West, 2 = North, 3 = East
-    value: string;   // e.g. "1♣", "2NT", "Pass", "Double"
-}
-
 interface BridgeAuctionProps {
-    bids: Bid[];
+    bids: string[][];
 }
 
 const BridgeAuction: React.FC<BridgeAuctionProps> = ({ bids }) => {
-    // Group bids by player name
-    const groupedBids: Record<string, string[]> = {
-        South: [],
-        West: [],
-        North: [],
-        East: [],
-    };
-    bids.forEach(bid => {
-        const playerName = players[bid.player];
-        groupedBids[playerName].push(bid.value);
-    });
 
     return (
-        <div className="p-4 rounded-xl bg-green-800 text-white font-mono max-w-lg mx-auto shadow-lg">
-            <h2 className="text-2xl font-bold text-center mb-4">Bridge Auction</h2>
-            <div className="grid grid-cols-4 gap-4 text-center">
-                {/* Player headers */}
-                {players.map(player => (
-                    <div key={player} className="font-semibold text-green-200">
-                        {player}
-                    </div>
-                ))}
-
-                {/* Bids grid: four columns, each player's bids in order */}
-                {players.map(player => (
-                    <div key={player}>
-                        {groupedBids[player].map((bid, i) => (
-                            <div key={i} className="py-1">
-                                {bid}
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+        <Card className="h-full w-full items-center " placeholder={undefined}
+              onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <table className="w-full min-w-max table-auto text-center">
+                <thead>
+                <tr>
+                    {players.map((player) => (
+                        <th
+                            key={player}
+                            className="bg-green-800 text-white font-mono max-w-lg mx-auto shadow-lg"
+                        >
+                            <Typography
+                                variant="paragraph"
+                                color="white"
+                                className="font-normal leading-none opacity-90"
+                                placeholder={undefined}
+                                onPointerEnterCapture={undefined}
+                                onPointerLeaveCapture={undefined}>
+                                {player}
+                            </Typography>
+                        </th>
+                    ))}
+                </tr>
+                </thead>
+                <tbody>
+                {bids.map(( row: string[] , index) => {
+                    const even = index % 2 === 0;
+                    const classes = ( even ? "bg-green-700 " : "bg-green-800 ")
+                        + "text-white center font-mono max-w-lg mx-auto shadow-lg" ;
+                    return (
+                        <tr key={ index }>
+                            { row.map((bid: string) => {
+                            return (<td className={classes}>
+                                    {bid}
+                            </td>);
+                            })}
+                        </tr>
+                    );
+                })}
+                </tbody>
+            </table>
+        </Card>);
 };
 
 export default BridgeAuction;

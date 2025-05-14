@@ -1,10 +1,10 @@
-* {
+.landingpage {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
-  body, html {
+
+  body.landingpage, html.landingpage {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
@@ -12,7 +12,7 @@
     overflow-x: hidden;
   }
   
-  h1 {
+  h1.landingpage {
     text-align: center;
     margin-top: 80px;
     font-size: 3rem;
@@ -30,13 +30,13 @@
     height: 100%;
     width: 400px;
     transition: all 800ms cubic-bezier(.8, 0, .33, 1);
-    border-radius: 0% 0% 100% 50%;
+    border-radius: 0 0 100% 50%;
     z-index: 1000;
   }
   
   nav.nav-open {
     transform: translateX(0px);
-    border-radius: 0% 0% 0% 0%;
+    border-radius: 0 0 0 0;
     background: rgba(255, 255, 255, 0.6);
   }
   

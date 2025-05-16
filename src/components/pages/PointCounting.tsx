@@ -1,13 +1,13 @@
 import {JSX, useState} from "react";
-import "./PointCounting.css";
-import Hand from "./Hand";
-import { highCardAnalyse, highCardPoints } from "./calculation/pointsCalc";
-import { generateSingleHand } from "./bridgehand";
-import ButtonToMainPage from "./ButtonToMainPage";
-import ButtonExerciseSet from "./ButtonExerciseSet";
-import ResultMessage from "./ResultMessage";
-import Progressbar from "./Progressbar";
-import ResultInputText from "./ResultInputText.tsx";
+import "../../css/PointCounting.css";
+import Hand from "../organisms/Hand.tsx";
+import { highCardAnalyse, highCardPoints } from "../../calculation/pointsCalc.tsx";
+import { generateSingleHand } from "../../calculation/bridgehand";
+import ButtonToMainPage from "../atoms/ButtonToMainPage.tsx";
+import ButtonExerciseSet from "../organisms/ButtonExerciseSet.tsx";
+import ResultMessage from "../molecules/ResultMessage.tsx";
+import Progressbar from "../organisms/Progressbar.tsx";
+import ResultInputText from "../molecules/ResultInputText.tsx";
 
 function PointCounting() {
 

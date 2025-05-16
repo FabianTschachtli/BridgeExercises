@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import parsePbnHands from "./pbnParser.js";
+import parsePbnHands from "./pbnParser.ts";
 
 describe('Testing the conversion from pbn hand notation to card list', () => {
     it('Test with all cards downwards in four suits', () => {

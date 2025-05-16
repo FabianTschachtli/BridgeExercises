@@ -10,9 +10,6 @@ function highCardPoints(cards: string[]) {
 function highCardAnalyse(cards: string[]) {
     const honneurs = ['J','Q','K','A'];
     const pointDistribution = new Map<string,number>();
-  //  Object.keys(Suit).forEach(suit =>
-  //      pointDistribution.set(suit, 0)
-  //  )
 
     for (const element of cards) {
         const points = honneurs.indexOf(element.substring(0,1)) + 1;

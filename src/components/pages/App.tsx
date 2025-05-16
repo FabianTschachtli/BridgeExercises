@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import './index.css';
-import './App.css';
-import Hand from './Hand';
-import BidTable from './BidTable';
-import BridgeAuction from './BridgeAuction';
+import '../../index.css';
+import '../../css/App.css';
+import Hand from '../organisms/Hand.tsx';
+import BidTable from '../organisms/BidTable.tsx';
+import BridgeAuction from '../organisms/BridgeAuction.tsx';
 
 function App() {
     document.body.classList.add('exercise');

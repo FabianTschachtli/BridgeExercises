@@ -2,11 +2,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from "./App.tsx";
-import PointCounting from "./PointCounting.tsx";
+import App from "../components/pages/App.tsx";
+import PointCounting from "../components/pages/PointCounting.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landingpage from "./landingpage.tsx";
-import MinorOpening from "./MinorOpening.tsx";
+import Landingpage from "../components/pages/landingpage.tsx";
+import MinorOpening from "../components/pages/MinorOpening.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

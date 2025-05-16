@@ -1,15 +1,15 @@
 import React, { useEffect, useState} from 'react';
 import './index.css';
-import './App.css';
-import Hand from './Hand';
-import BidTable from './BidTable';
-import BridgeAuction from './BridgeAuction';
-import {generateSingleHand} from "./bridgehand";
-import Progressbar from "./Progressbar.tsx";
-import ResultMessage from "./ResultMessage.tsx";
-import ButtonExerciseSet from "./ButtonExerciseSet.tsx";
-import ButtonToMainPage from "./ButtonToMainPage.tsx";
-import {highCardPoints} from "./calculation/pointsCalc.tsx";
+import '../../css/App.css';
+import Hand from '../organisms/Hand.tsx';
+import BidTable from '../organisms/BidTable.tsx';
+import BridgeAuction from '../organisms/BridgeAuction.tsx';
+import {generateSingleHand} from "../../calculation/bridgehand";
+import Progressbar from "../organisms/Progressbar.tsx";
+import ResultMessage from "../molecules/ResultMessage.tsx";
+import ButtonExerciseSet from "../organisms/ButtonExerciseSet.tsx";
+import ButtonToMainPage from "../atoms/ButtonToMainPage.tsx";
+import {highCardPoints} from "../../calculation/pointsCalc.tsx";
 
 function App() {
     type HandState = {
@@ -106,7 +106,7 @@ function App() {
                 return {bid: "2NT", explanation: "2 NT with 11-12 HCP and a balanced hand"}
             }
         }
-        if (hcp >= 13 && hcp <= 15 && clubCount < 5) {
+        if (hcp >= 13 && hcp <= 15 && clubCount < 5 && diamondCount < 5) {
             return {bid: "3NT", explanation: "3 NT with 13-15 HCP and a balanced hand"}
         } else {
             return {bid: "1♦", explanation: "If you have to, lie in a minor"}

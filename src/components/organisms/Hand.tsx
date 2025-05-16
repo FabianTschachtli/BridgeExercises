@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import CardDisplay from "./CardDisplay";
+import CardDisplay from "../atoms/CardDisplay.tsx";
 
 interface HandProps {
     cardList: string;
